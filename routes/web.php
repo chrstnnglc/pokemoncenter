@@ -20,14 +20,13 @@ Route::get('store', 'PokemonsController@index');
 Route::get('store/{pokemon}', 'PokemonsController@show');
 Route::get('store/order', 'PokemonsController@order');
 Route::post('store', 'PokemonsController@add');
-
-// Route::get('add', 'PokemonsController@add');
-// Route::get('edit', 'PokemonsController@edit');
+// Route::get('store/{pokemon}','PokemonsController@edit');
+Route::put('store/{pokemon}','PokemonsController@update');
 
 Route::get('profile', 'UserController@index');
 Route::get('profile/edit', 'UserController@edit'); //
 Route::get('profile/orderhistory', 'UserController@view'); //
-Route::get('profile/edit', 'UserController@edit'); //
+Route::put('profile','UserController@update');
 Route::get('cart', 'UserController@cart'); //
 
 Auth::routes();

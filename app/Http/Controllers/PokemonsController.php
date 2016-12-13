@@ -8,6 +8,11 @@ use App\Http\Controllers\Controller;
 
 class PokemonsController extends Controller
 {
+    // protected $table = 'pokemons';
+    protected $fillable = [
+        'description', 'priceeach', 'stock'
+    ];
+
     public function index() {
     	$pokemons = Pokemon::all();
 
@@ -18,11 +23,11 @@ class PokemonsController extends Controller
     	return view('store.show', compact('pokemon'));
     }
 
-    public function edit(Pokemon $pokemon) { // correct
-    	return view('edit', compact('pokemon'));
-    }
+    // public function edit(Pokemon $pokemon) { // correct
+    // 	return view('edit', compact('pokemon'));
+    // }
 
-    public function add(Request $request, Pokemon $pokemons) {
+    public function add(Request $request) {
 
         $pokemon = new Pokemon;
 
@@ -32,6 +37,17 @@ class PokemonsController extends Controller
         $pokemon->description = $request->description;
         $pokemon->priceeach = $request->priceeach;
         $pokemon->stock = $request->stock;
+
+        $pokemon->save();
+
+        return back();
+    }
+
+    public function update(Request $request, Pokemon $pokemon) { // correct
+
+        $pokemon->description = $request->description !== '' ? $pokemon->description : $pokemon->description;
+        $pokemon->priceeach = $request->priceeach !== '' ? $pokemon->priceeach : $pokemon->priceeach;
+        $pokemon->stock = $request->stock !== '' ? $pokemon->stock : $pokemon->stock;
 
         $pokemon->save();
 

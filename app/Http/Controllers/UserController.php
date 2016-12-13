@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
 	public function index()
     {
-        return view('profile.index');
+        $user = Auth::user();
+
+        return view('profile.index', compact('user'));
     }
 
     public function cart()
@@ -21,8 +24,16 @@ class UserController extends Controller
        return view('profile.orderhistory');
     }
 
-    public function edit()
-    {
-       return view('profile.edit');
+    public function update(Request $request) { // correct
+        $user = Auth::user();
+
+        $user->name = $request->name !== '' ? $user->name : $user->name;
+        $user->email = $request->email !== '' ? $user->email : $user->email;
+
+        #$this->attributes['description'] = trim($description) !== '' ? $description : null;
+
+        $user->save();
+
+        return back();
     }
 }

@@ -7,14 +7,18 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class PokemonsController extends Controller
-{
+{   
+    public function __construct() {
+        $this->middleware('admin', ['only' => ['addpokemon', 'updatepokemon']]);
+    }
+
     // protected $table = 'pokemons';
     protected $fillable = [
         'description', 'priceeach', 'stock'
     ];
 
     public function index() {
-    	$pokemons = Pokemon::all();
+    	$pokemons = Pokemon::all()->sortBy('id');
 
     	return view('store.index', compact('pokemons'));
     }
@@ -23,11 +27,15 @@ class PokemonsController extends Controller
     	return view('store.show', compact('pokemon'));
     }
 
-    // public function edit(Pokemon $pokemon) { // correct
-    // 	return view('edit', compact('pokemon'));
-    // }
+    public function addform() {
+        return view('add');
+    }
 
-    public function add(Request $request) {
+    public function editform(Pokemon $pokemon) {
+        return view('store.edit', compact('pokemon'));
+    }
+
+    public function addpokemon(Request $request) {
 
         $pokemon = new Pokemon;
 
@@ -43,7 +51,7 @@ class PokemonsController extends Controller
         return back();
     }
 
-    public function update(Request $request, Pokemon $pokemon) { // correct
+    public function editpokemon(Request $request, Pokemon $pokemon) {
 
         $pokemon->description = $request->description !== '' ? $pokemon->description : $pokemon->description;
         $pokemon->priceeach = $request->priceeach !== '' ? $pokemon->priceeach : $pokemon->priceeach;

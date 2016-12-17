@@ -8,8 +8,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Pokemon Center</title>
-
+    @yield('title')
+    
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
 
@@ -37,7 +37,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        Pokemon Center
+                        Pokémon Center
                     </a>
                 </div>
 

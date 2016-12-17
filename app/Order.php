@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
 
-	public function user() {
+	public function users() {
 		return $this->belongsTo(User::class);
 	}
 

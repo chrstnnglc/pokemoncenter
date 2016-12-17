@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    <title>Pokemon Center | Store</title>
+    <title>Profile | Pokémon Center</title>
 @stop
 
 @section('content')
@@ -15,11 +15,6 @@
                 </div>
 
                 <div class="panel-body">
-				    Name: {{ $user->name }}<br>
-                    Email: {{ $user->email }}
-				    <br> 
-                    <a href="{{ url('/profile/orderhistory') }}">View order history</a>
-
                     <form method="POST" action="/profile">
                         {{ method_field('PUT') }}
                         {{ csrf_field() }}
@@ -32,6 +27,8 @@
                         <button type="submit">Update</button>
 
                     </form>
+
+                    <a href="{{ url('/profile/orderhistory') }}">View order history</a>
                 </div>
         </div>
     </div>

@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    <title>Login | Pokémon Center</title>
+@stop
+
 @section('content')
 <div class="container">
     <div class="row">

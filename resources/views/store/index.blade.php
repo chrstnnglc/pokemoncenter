@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-	<title>Pokemon Center</title>
+    <title>Store | Pokémon Center</title>
 @stop
 
 @section('content')
@@ -23,7 +23,6 @@
 							<th>Type</th>
 							<th>Price per item</th>
 							<th>Stock</th>
-							<th>Order</th>
 						</tr>
 
 						@foreach ($pokemons as $pokemon)
@@ -37,31 +36,15 @@
 								@else
 									<td>Out of stock!</td>
 								@endif
-								<td><a>Order</a></td>
 							</tr>
 						@endforeach
 
 					</table>
 
-					<!-- THIS PART ONLY VIEWABLE TO ADMIN -->					
+					@if (Auth::user()->admin == true)
+						<a href="/add">Add a Pokemon</a>
+					@endif
 
-					<h3>Add a Pokemon</h3>
-
-					<form method="POST" action="/store">
-						{{ csrf_field() }}
-
-						<div>
-							Pokedex number: <br><input type="text" name="id"><br><br>
-							Name: <br><input type="text" name="name"><br><br>
-							Type: <br><input type="text" name="type"><br><br>
-							Description: <br><textarea name="description"></textarea><br><br>
-							Price per item: <br><input type="text" name="priceeach"><br><br>
-							Stock: <br><input type="text" name="stock"><br><br>
-						</div>
-
-						<button type="submit">Add</button>
-
-					</form>
 				</div>
 		</div>
 	</div>

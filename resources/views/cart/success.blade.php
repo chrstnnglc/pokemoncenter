@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    <title>Pokemon Center | Store</title>
+    <title>Checkout successful! | Pokémon Center</title>
 @stop
 
 @section('content')
@@ -11,11 +11,13 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                	<h1>Cart</h1>
+                	<h1>Checkout successful!</h1>
                 </div>
 
                 <div class="panel-body">
-				    <p>All unpaid orders go here.</p>
+                    
+                    <h4>Thank you! We look forward to your next purchase!</h4>
+                    <a href="/store">Back to store</a>
 				</div>
         </div>
     </div>

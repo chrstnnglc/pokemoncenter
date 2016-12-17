@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    <title>Pokemon Center</title>
+    <title>{{ $pokemon->name }} | Pokémon Center</title>
 @stop
 
 @section('content')
@@ -19,24 +19,28 @@
 
 				    <h4>Type: {{ $pokemon->type }}</h4>
 				    <p>Description: {{ $pokemon->description }}</p>
-				    <a href="{{ url('/store') }}"><p>Back to store</p></a>
 
-                    <!-- ONLY VIEWABLE TO ADMIN -->
-                    <h3>Edit Pokemon</h3>
-
-                    <form method="POST" action="/store/{{ $pokemon->id }}">
-                        {{ method_field('PUT') }}
+                    <form method="POST" action="/cart">
                         {{ csrf_field() }}
+                        <input type="hidden" name="id" value={{ $pokemon->id }}>
+                        <input type="hidden" name="priceeach" value={{ $pokemon->priceeach }}>
+                        <input type="hidden" name="name" value={{ $pokemon->name }}>
+                        <input type="hidden" name="stock" value={{ $pokemon->stock }}>
 
-                        <div>
-                            Description: <br><textarea name="description">{{ $pokemon->description }}</textarea><br><br>
-                            Price per item: <br><input type="text" name="priceeach"><br><br>
-                            Stock: <br><input type="text" name="stock"><br><br>
-                        </div>
-
-                        <button type="submit">Update</button>
-
+                        @if ($pokemon->stock > 0)
+                            Quantity: <br>
+                            <input type="text" name="quantity">
+                            <br>
+                            <button type="submit">Add to Cart</button>
+                        @endif
                     </form>
+
+                    <br>
+                    @if (Auth::user()->admin == true)
+                        <a href="/store/{{ $pokemon->id }}/edit"><p>Edit Pokemon</p></a>
+                    @endif
+
+				    <a href="/store"><p>Back to store</p></a>
 				</div>
 
         </div>

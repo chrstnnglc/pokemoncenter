@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    <title>Pokemon Center | Store</title>
+    <title>Order History | Pokémon Center</title>
 @stop
 
 @section('content')
@@ -15,9 +15,37 @@
                 </div>
 
                 <div class="panel-body">
-				    @foreach ($user->orders as $order)
-                        @foreach ($orders->orderdetails as $orderdetail)
-                    @endforeach
+                    @if ($orders == NULL or $orders->get()->count() == 0)
+                        You haven't made any orders yet.
+                    @else
+                        <table>
+                            @foreach ($orders->get() as $order)
+                                <tr>
+                                    <td colspan=2><h4>Order #{{ $order->id }}</h4></td>
+                                    <td colspan=2><h4>{{ $order->orderdate }}</h4></td>
+                                </tr>
+
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Qty</th>
+                                    <th>Price each</th>
+                                    <th>Total</th>
+                                </tr>
+                                @foreach ($order->orderdetails()->get() as $orderdetail)
+
+                                    <tr>
+                                        <td>{{ $orderdetail->pokemonname }}</td>
+                                        <td>{{ $orderdetail->quantity }}</td>
+                                        <td>{{ $orderdetail->priceeach }}</td>
+                                        @if ($orderdetail->id == $order->orderdetails()->first()->id)
+                                            <th rowspan= {{ $order->orderdetails()->get()->count() }}>{{ $order->total }}</th>
+                                        @endif
+                                    </tr>
+                                @endforeach
+                                <tr></tr>
+                            @endforeach
+                        </table>
+                    @endif
                 </div>
         </div>
     </div>

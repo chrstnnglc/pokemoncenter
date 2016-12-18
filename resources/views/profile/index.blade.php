@@ -20,8 +20,8 @@
                         {{ csrf_field() }}
 
                         <div>
-                            Name: <br><input type="text" name="name"><br><br>
-                            Email: <br><input type="text" name="email"><br><br>
+                            Name: <br><input type="text" name="name" value = {{ $user->name }}><br><br>
+                            Email: <br><input type="text" name="email" value = {{ $user->email }}><br><br>
                         </div>
 
                         <button type="submit">Update</button>

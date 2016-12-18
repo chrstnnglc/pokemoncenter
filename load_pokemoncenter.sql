@@ -5,4 +5,4 @@ insert into users (name, email, password, admin, remember_token, created_at, upd
 
 
 -- pokemon
-\copy pokemons from 'postgresdb/Pokemons.csv' with delimiter as ',' csv;
+\copy pokemons from 'Pokemon.csv' with delimiter as ',' csv;

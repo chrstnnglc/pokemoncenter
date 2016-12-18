@@ -27,16 +27,18 @@
                         <input type="hidden" name="name" value={{ $pokemon->name }}>
                         <input type="hidden" name="stock" value={{ $pokemon->stock }}>
 
-                        @if ($pokemon->stock > 0)
+                        @if (Auth::user() !== NULL and $pokemon->stock > 0)
                             Quantity: <br>
                             <input type="text" name="quantity">
                             <br>
                             <button type="submit">Add to Cart</button>
+                        @else
+                            Want to order? <a href="/login">Log in</a> or <a href="/register">register</a>!
                         @endif
                     </form>
 
                     <br>
-                    @if (Auth::user()->admin == true)
+                    @if (Auth::user() !== NULL and Auth::user()->admin == true)
                         <a href="/store/{{ $pokemon->id }}/edit"><p>Edit Pokemon</p></a>
                     @endif
 

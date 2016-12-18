@@ -41,7 +41,7 @@
 
 					</table>
 
-					@if (Auth::user()->admin == true)
+					@if (Auth::user() !== NULL and Auth::user()->admin == true)
 						<a href="/add">Add a Pokemon</a>
 					@endif
 

@@ -53,9 +53,9 @@ class PokemonsController extends Controller
 
     public function editpokemon(Request $request, Pokemon $pokemon) {
 
-        $pokemon->description = $request->description !== '' ? $pokemon->description : $pokemon->description;
-        $pokemon->priceeach = $request->priceeach !== '' ? $pokemon->priceeach : $pokemon->priceeach;
-        $pokemon->stock = $request->stock !== '' ? $pokemon->stock : $pokemon->stock;
+        $pokemon->description = $request->description;
+        $pokemon->priceeach = $request->priceeach;
+        $pokemon->stock = $request->stock;
 
         $pokemon->save();
 

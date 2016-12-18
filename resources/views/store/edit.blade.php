@@ -23,8 +23,8 @@
 
                         <div>
                             Description: <br><textarea name="description">{{ $pokemon->description }}</textarea><br><br>
-                            Price per item: <br><input type="text" name="priceeach"><br><br>
-                            Stock: <br><input type="text" name="stock"><br><br>
+                            Price per item: <br><input type="text" name="priceeach" value={{ $pokemon->priceeach }}><br><br>
+                            Stock: <br><input type="text" name="stock" value={{ $pokemon->stock }}><br><br>
                         </div>
 
                         <button type="submit">Update</button>

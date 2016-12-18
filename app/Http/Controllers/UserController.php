@@ -106,7 +106,7 @@ class UserController extends Controller
 
         $order->total = $order->total - ($orderdetail->priceeach * $orderdetail->quantity);
 
-        $orderdetail->quantity = $request->quantity !== 0 ? $orderdetail->quantity : $orderdetail->quantity;
+        $orderdetail->quantity = $request->quantity;
         $orderdetail->save();
 
         $order->total += ($orderdetail->priceeach * $orderdetail->quantity);

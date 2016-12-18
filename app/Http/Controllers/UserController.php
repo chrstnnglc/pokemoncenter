@@ -38,8 +38,8 @@ class UserController extends Controller
     public function update(Request $request) {
         $user = Auth::user();
 
-        $user->name = $request->name !== '' ? $user->name : $user->name;
-        $user->email = $request->email !== '' ? $user->email : $user->email;
+        $user->name = $request->name;
+        $user->email = $request->email;
         $user->save();
 
         return back();
